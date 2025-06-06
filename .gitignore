@@ -1,32 +1,148 @@
-# Prerequisites
-*.d
+# Solución Visual Studio
+.vs/
+#*.sln
+#*.vcxproj*
+*.vcxitems
+*.filters
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+# Build results de C++/CMake
+[Bb]uild/
+[Oo]bj/
+[Oo]ut/
+[Dd]ebug/
+[Rr]elease/
 *.exe
-*.out
-*.app
+*.dll
+*.pdb
+*.cache
+*.lib
+*.ncb
+*.sbr
+*.sdf
+*.ipch
+*.iobj
+*.ipdb
+*.ilk
+*.obj
+*.exp
+*.idb
+*.tlog
+*.lastbuildstate
+*.log
+*.manifest
+*.res
+*.exp
+*.pch
+*.bsc
+*.suo
+*.opensdf
+*.sdf
+
+# CMake generated
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CMakeScripts/
+*.cmake
+*.tlog
+*.in
+*.project
+*.cproject
+*.cache
+
+# WPF (C#) artifacts
+GuiClient/[Bb]in/
+GuiClient/[Oo]bj/
+GuiClient/packages/
+GuiClient/TestResults/
+GuiClient/*.userprefs
+GuiClient/.vs/
+GuiClient/*.csproj.user
+GuiClient/*.suo
+GuiClient/app.config
+GuiClient/*.vshost.*
+GuiClient/*.publish.xml
+GuiClient/.dotnet/
+
+# NuGet Packages
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+GuiClient/packages/
+
+# Rider and VS Code
+.idea/
+.vscode/
+*.code-workspace
+
+# OS-specific
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Test Results
+TestResults/
+*.TestResult.xml
+*.trx
+*.coverage
+
+# DotCover
+.idea/.dotCover
+
+# Local history for JetBrains IDEs
+.idea/.ideaIC
+.idea/.ideaIU
+.idea/.ideaUE
+
+# Node modules (if you end up with Node tools)
+node_modules/
+
+# JSON file backups
+*.orig
+
+# Backup files
+*~
+*.bak
+*.swp
+*.tmp
+
+# External tools
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Local tools config
+*.local
+
+# Mac
+.AppleDouble
+.LSOverride
+
+# Python (si usas scripts)
+__pycache__/
+*.pyc
+
+# Archivos generados por gRPC/protobuf (si están en /gen)
+gen/
+
+# Archivos de configuración local
+*.local.config
+
+# Archivos de paquetes de Visual Studio
+.vspackage/
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Azure Functions (si aplica)
+func/

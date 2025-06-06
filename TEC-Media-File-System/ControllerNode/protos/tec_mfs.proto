@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package tec_mfs;
+
+service FileSytem {
+	rpc RegisterDiskNode(NodeInfo) returns (StatusResponse);
+	rpc StoreBlock (BlockData) returns (StatusResponse);
+	rpc RetrieveBlock (BlockRequest) returns (BlockData);
+	rpc AddDocument(FileRequest) returns (StatusResponse);
+	rpc GetDocument(FileRequest) returns (FileDataResponse);
+	rpc GetDocumentList(Empty) returns (FileListResponse);
+	rpc GetSystemStatus(Empty) returns (SystemStatusResponse);
+}
+
+message NodeInfo {
+	string node_id = 1;
+	string node_address = 2;
+	int32 node_port = 3;
+	string storage_path = 4;
+	int64 node_capacity = 5;
+}
+
+message BlockData {
+	string block_id = 1;
+	bytes data = 2;
+	bool is_parity = 3;
+	string file_response = 4;
+}
+
+message FileRequest {
+    string filename = 1;
+    bytes content = 2;
+}
+
+message FileReference {
+	string file_id = 1;
+	string file_name = 2;
+}
+
+message FileDataResponse {
+	bytes file_data = 1;
+	FileMetadata metadata = 2;
+}
+
+message FileMetadata {
+	int64 file_size = 1;
+	string hash = 2;
+	int64 created_at = 3;
+}
+
+message FileListResponse {
+	repeated FileReference files = 1;
+}
+
+message SystemStatusResponse {
+	message NodeStatus {
+		string node_id = 1;
+		string node_address = 2;
+		int32 node_port = 3;
+		int64 total_capacity = 4;
+		int64 used_capacity = 5;
+		int64 free_capacity = 6;
+	}
+	repeated NodeStatus nodes = 1;
+}
+
+message StatusResponse {
+	bool success = 1;
+	string message = 2;
+}
+
+message BlockRequest {
+	string block_id = 1;
+}
+
+message Empty {
+	// This message is used for RPCs that do not require any input parameters.
+}
