@@ -126,6 +126,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gen\tec_mfs.grpc.pb.cc" />
+    <ClCompile Include="gen\tec_mfs.pb.cc" />
     <ClCompile Include="src\ConfigLoader\ConfigLoader.cpp" />
     <ClCompile Include="src\DiskNode\BlockStorageManager.cpp" />
     <ClCompile Include="src\DiskNode\DiskNodeService.cpp" />
@@ -133,6 +135,8 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gen\tec_mfs.grpc.pb.h" />
+    <ClInclude Include="gen\tec_mfs.pb.h" />
     <ClInclude Include="include\ConfigLoader\ConfigLoader.h" />
     <ClInclude Include="include\DiskNode\BlockStorageManager.h" />
     <ClInclude Include="include\DiskNode\DiskNodeService.h" />

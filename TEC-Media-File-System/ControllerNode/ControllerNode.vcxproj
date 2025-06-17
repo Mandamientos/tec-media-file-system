@@ -127,12 +127,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gen\tec_mfs.grpc.pb.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="gen\tec_mfs.pb.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Controller\NodeController.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Server\Server.cpp" />
     <ClCompile Include="src\Server\Starter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gen\tec_mfs.grpc.pb.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="gen\tec_mfs.pb.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="include\Controller\NodeController.h" />
     <ClInclude Include="include\Server\Server.h" />
     <ClInclude Include="include\Server\Starter.h" />

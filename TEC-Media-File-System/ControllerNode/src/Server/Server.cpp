@@ -17,31 +17,52 @@ grpc::Status FileSystemServiceImpl::RegisterDiskNode(grpc::ServerContext* contex
 }
 
 grpc::Status FileSystemServiceImpl::StoreBlock(grpc::ServerContext* context, const tec_mfs::BlockData* request, tec_mfs::StatusResponse* response) {
-	// Implementation for storing a block
+	if (nodeController.storeBlock(*request, request->file_response())) {
+		response->set_success(true);
+		response->set_message("Bloque almacenado correctamente.");
+	}
+	else {
+		response->set_success(false);
+		response->set_message("Fallo al almacenar bloque.");
+	}
 	return grpc::Status::OK;
 }
 
 grpc::Status FileSystemServiceImpl::RetrieveBlock(grpc::ServerContext* context, const tec_mfs::BlockRequest* request, tec_mfs::BlockData* response) {
-	// Implementation for retrieving a block
-	return grpc::Status::OK;
+	if (nodeController.retrieveBlock(request->block_id(), *response)) {
+		return grpc::Status::OK;
+	}
+	return grpc::Status(grpc::StatusCode::NOT_FOUND, "Bloque no encontrado");
 }
 
 grpc::Status FileSystemServiceImpl::AddDocument(grpc::ServerContext* context, const tec_mfs::FileRequest* request, tec_mfs::StatusResponse* response) {
-	// Implementation for adding a document
+	
+	std::cout << "[AddDocument] Recibiendo archivo: " << request->filename() << std::endl;
+
+	if (nodeController.addDocument(*request)) {
+		response->set_success(true);
+		response->set_message("Documento cargado exitosamente");
+	}
+	else {
+		response->set_success(false);
+		response->set_message("Error al cargar el documento");
+	}
 	return grpc::Status::OK;
 }
 
 grpc::Status FileSystemServiceImpl::GetDocument(grpc::ServerContext* context, const tec_mfs::FileRequest* request, tec_mfs::FileDataResponse* response) {
-	// Implementation for getting a document
-	return grpc::Status::OK;
+	if (nodeController.getDocument(request->filename(), *response)) {
+		return grpc::Status::OK;
+	}
+	return grpc::Status(grpc::StatusCode::NOT_FOUND, "Documento no encontrado");
 }
 
 grpc::Status FileSystemServiceImpl::GetDocumentList(grpc::ServerContext* context, const tec_mfs::Empty* request, tec_mfs::FileListResponse* response) {
-	// Implementation for getting the document list
+	nodeController.listFiles(*response);
 	return grpc::Status::OK;
 }
 
 grpc::Status FileSystemServiceImpl::GetSystemStatus(grpc::ServerContext* context, const tec_mfs::Empty* request, tec_mfs::SystemStatusResponse* response) {
-	// Implementation for getting the system status
+	nodeController.getSystemStatus(*response);
 	return grpc::Status::OK;
 }
