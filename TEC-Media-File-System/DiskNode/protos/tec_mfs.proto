@@ -6,7 +6,9 @@ service FileSytem {
 	rpc RegisterDiskNode(NodeInfo) returns (StatusResponse);
 	rpc StoreBlock (BlockData) returns (StatusResponse);
 	rpc RetrieveBlock (BlockRequest) returns (BlockData);
+	rpc DeleteBlock (BlockRequest) returns (StatusResponse);
 	rpc AddDocument(FileRequest) returns (StatusResponse);
+	rpc DeleteDocument(DeleteRequest) returns (StatusResponse);
 	rpc GetDocument(FileRequest) returns (FileDataResponse);
 	rpc GetDocumentList(Empty) returns (FileListResponse);
 	rpc GetSystemStatus(Empty) returns (SystemStatusResponse);
@@ -71,6 +73,10 @@ message StatusResponse {
 
 message BlockRequest {
 	string block_id = 1;
+}
+
+message DeleteRequest {
+	string filename = 1;
 }
 
 message Empty {

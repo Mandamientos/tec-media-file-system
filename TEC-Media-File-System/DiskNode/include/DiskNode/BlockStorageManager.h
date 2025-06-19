@@ -9,6 +9,7 @@ public:
 
 	bool saveBlock(const tec_mfs::BlockData& blockData);
 	bool loadBlock(const std::string& blockId, tec_mfs::BlockData& blockData);
+	bool deleteBlock(const std::string& blockId);
 private:
 	std::string storagePath;
 };

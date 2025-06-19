@@ -43,3 +43,13 @@ bool BlockStorageManager::loadBlock(const std::string& blockId, tec_mfs::BlockDa
     std::cout << "[DiskNode] Bloque leído desde: " << filePath << ", tamaño: " << data.size() << std::endl;
     return true;
 }
+
+bool BlockStorageManager::deleteBlock(const std::string& blockId) {
+    std::string filePath = storagePath + "/" + blockId + ".binary";
+    if (std::remove(filePath.c_str()) != 0) {
+        std::cerr << "[ERROR] No se pudo eliminar el bloque: " << filePath << std::endl;
+        return false;
+    }
+    std::cout << "[DiskNode] Bloque eliminado: " << filePath << std::endl;
+    return true;
+}

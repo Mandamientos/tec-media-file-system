@@ -29,14 +29,14 @@ file(GLOB_RECURSE PROJECT_HEADERS
     "${INCLUDE_DIR}/**/*.h"
 )
 
-add_executable(ControllerNode 
+add_executable(DiskNode 
     ${PROJECT_SOURCES}
     ${PROJECT_HEADERS}
     ${GENERATED_SOURCES}
     ${GENERATED_HEADERS}
 )
 
-target_include_directories(ControllerNode
+target_include_directories(DiskNode
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include/DiskNode
@@ -51,7 +51,7 @@ find_package(gRPC CONFIG REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(tinyxml2 CONFIG REQUIRED)
 
-target_link_libraries(ControllerNode
+target_link_libraries(DiskNode
 	gRPC::grpc++
 	protobuf::libprotobuf
     tinyxml2::tinyxml2 

@@ -22,6 +22,7 @@ struct BlockLocation {
 
 struct FileMetadata {
 	std::string filename;
+	std::int64_t fileSize;
 	std::vector<BlockLocation> blocks;
 };
 
@@ -33,6 +34,7 @@ public:
 	bool storeBlock(const tec_mfs::BlockData& block, const std::string& nodeId);
 	bool retrieveBlock(const std::string& blockId, tec_mfs::BlockData& block);
 	bool getDocument(const std::string& filename, tec_mfs::FileDataResponse& response);
+	bool deleteDocument(const std::string& filename);
 	void listFiles(tec_mfs::FileListResponse& response);
 	void getSystemStatus(tec_mfs::SystemStatusResponse& response);
 

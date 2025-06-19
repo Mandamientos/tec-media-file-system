@@ -35,3 +35,15 @@ grpc::Status DiskNodeService::RetrieveBlock(grpc::ServerContext* context, const 
     std::cout << "[DiskNode] Bloque enviado exitosamente: " << request->block_id() << std::endl;
     return grpc::Status::OK;
 }
+
+grpc::Status DiskNodeService::DeleteBlock(grpc::ServerContext* context, const tec_mfs::BlockRequest* request, tec_mfs::StatusResponse* response) {
+    std::cout << "[DiskNode] Eliminando bloque: " << request->block_id() << std::endl;
+    if (blockStorageManager.deleteBlock(request->block_id())) {
+        response->set_success(true);
+        response->set_message("Bloque eliminado exitosamente");
+    } else {
+        response->set_success(false);
+        response->set_message("Error al eliminar el bloque");
+    }
+    return grpc::Status::OK;
+}

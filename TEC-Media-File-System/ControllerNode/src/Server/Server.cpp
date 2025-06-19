@@ -16,25 +16,6 @@ grpc::Status FileSystemServiceImpl::RegisterDiskNode(grpc::ServerContext* contex
 	return grpc::Status::OK;
 }
 
-grpc::Status FileSystemServiceImpl::StoreBlock(grpc::ServerContext* context, const tec_mfs::BlockData* request, tec_mfs::StatusResponse* response) {
-	if (nodeController.storeBlock(*request, request->file_response())) {
-		response->set_success(true);
-		response->set_message("Bloque almacenado correctamente.");
-	}
-	else {
-		response->set_success(false);
-		response->set_message("Fallo al almacenar bloque.");
-	}
-	return grpc::Status::OK;
-}
-
-grpc::Status FileSystemServiceImpl::RetrieveBlock(grpc::ServerContext* context, const tec_mfs::BlockRequest* request, tec_mfs::BlockData* response) {
-	if (nodeController.retrieveBlock(request->block_id(), *response)) {
-		return grpc::Status::OK;
-	}
-	return grpc::Status(grpc::StatusCode::NOT_FOUND, "Bloque no encontrado");
-}
-
 grpc::Status FileSystemServiceImpl::AddDocument(grpc::ServerContext* context, const tec_mfs::FileRequest* request, tec_mfs::StatusResponse* response) {
 	
 	std::cout << "[AddDocument] Recibiendo archivo: " << request->filename() << std::endl;
@@ -55,6 +36,17 @@ grpc::Status FileSystemServiceImpl::GetDocument(grpc::ServerContext* context, co
 		return grpc::Status::OK;
 	}
 	return grpc::Status(grpc::StatusCode::NOT_FOUND, "Documento no encontrado");
+}
+
+grpc::Status FileSystemServiceImpl::DeleteDocument(grpc::ServerContext* context, const tec_mfs::DeleteRequest* request, tec_mfs::StatusResponse* response) {
+	if (nodeController.deleteDocument(request->filename())) {
+		response->set_success(true);
+		response->set_message("[delDocument] El archivo ha sido eliminado correctamente.");
+	} else {
+		response->set_success(false);
+		response->set_message("[delDocument] Error al eliminar el documento");
+	}
+	return grpc::Status::OK;
 }
 
 grpc::Status FileSystemServiceImpl::GetDocumentList(grpc::ServerContext* context, const tec_mfs::Empty* request, tec_mfs::FileListResponse* response) {
